@@ -417,4 +417,5 @@ function init() {
   );
   elements.switch.checked = savedTheme !== "dark";
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
+  initializeData();
 }
