@@ -9,11 +9,11 @@ import {initialData} from "./initialData.js";
 
 // Function checks if local storage already has data, if not it loads initialData to localStorage
 function initializeData() {
-  if (!localStorage.getItem('tasks')) {
-    localStorage.setItem('tasks', JSON.stringify(initialData)); 
-    localStorage.setItem('showSideBar', 'true')
+  if (!localStorage.getItem("tasks")) {
+    localStorage.setItem("tasks", JSON.stringify(initialData)); 
+    localStorage.setItem("showSideBar", "true")
   } else {
-    console.log('Data already exists in localStorage');
+    console.log("Data already exists in localStorage");
   }
 }
 
@@ -153,7 +153,7 @@ function filterAndDisplayTasksByBoard(boardName) {
       const taskElement = document.createElement("div");
       taskElement.classList.add("task-div");
       taskElement.textContent = task.title;
-      taskElement.setAttribute('data-task-id', task.id);
+      taskElement.setAttribute("data-task-id", task.id);
 
       // Listen for a click event on each task and open a modal
       taskElement.addEventListener("click", () => { 
@@ -173,13 +173,13 @@ function refreshTasksUI() {
 // Styles the active board by adding an active class
 // TASK: Fix Bugs
 function styleActiveBoard(boardName) {
-  document.querySelectorAll('.board-btn').forEach(btn => { 
+  document.querySelectorAll(".board-btn").forEach(btn => { 
     
     if(btn.textContent === boardName) {
-      btn.classList.add('active') 
+      btn.classList.add("active") 
     }
     else {
-      btn.classList.remove('active'); 
+      btn.classList.remove("active"); 
     }
   });
 }
@@ -192,18 +192,18 @@ function addTaskToUI(task) {
     return;
   }
 
-  let tasksContainer = column.querySelector('.tasks-container');
+  let tasksContainer = column.querySelector(".tasks-container");
   if (!tasksContainer) {
     console.warn(`Tasks container not found for status: ${task.status}, creating one.`);
-    tasksContainer = document.createElement('div');
-    tasksContainer.className = 'tasks-container';
+    tasksContainer = document.createElement("div");
+    tasksContainer.className = "tasks-container";
     column.appendChild(tasksContainer);
   }
 
-  const taskElement = document.createElement('div');
-  taskElement.className = 'task-div';
+  const taskElement = document.createElement("div");
+  taskElement.className = "task-div";
   taskElement.textContent = task.title; // Modify as needed
-  taskElement.setAttribute('data-task-id', task.id);
+  taskElement.setAttribute("data-task-id", task.id);
   
   tasksContainer.appendChild(); 
 }
@@ -250,7 +250,7 @@ function setupEventListeners() {
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? 'block' : 'none'; 
+  modal.style.display = show ? "block" : "none"; 
 }
 
 /*************************************************************************************************************************************************
