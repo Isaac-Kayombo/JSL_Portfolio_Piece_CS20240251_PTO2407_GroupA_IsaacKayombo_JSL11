@@ -352,19 +352,50 @@ function toggleTheme() {
 
 
 function openEditTaskModal(task) {
-  // Set task details in modal inputs
-  
+  // SET TASK DETAILS IN MODAL INPUTS
+  const taskTitleInput = document.getElementById("edit-task-title-input");
+	const taskDescInput = document.getElementById("edit-task-desc-input");
+	const taskStatusInput = document.getElementById("edit-select-status");
 
-  // Get button elements from the task modal
+  taskTitleInput.value = task.title; // SETS TASK TITLE
+	taskDescInput.value = task.description; // SETS TASK DESCRIPTION
+	taskStatusInput.value = task.status; // SETS TASK STATUS
+
+  // GET BUTTON ELEMENTS FROM THE TASK MODAL
+  const saveChangesBtn = document.getElementById("save-task-changes-btn");
+	const cancelEditBtn = document.getElementById("cancel-edit-btn");
+	const deleteTaskBtn = document.getElementById("delete-task-btn");
 
 
-  // Call saveTaskChanges upon click of Save Changes button
+  // SAVES CHANGES
+  saveChangesBtn.addEventListener("click", () => {
+		const updatedTask = {
+			id: task.id, // Keep the same ID
+			title: taskTitleInput.value,
+			description: taskDescInput.value,
+			status: taskStatusInput.value,
+			board: task.board, // Retain the board name
+		};
+
+		const patchedTasks = patchTask(updatedTask.id, updatedTask);
+		saveTasks(patchedTasks);
+		refreshTasksUI();
+		toggleModal(false, elements.editTaskModalWindow); // Close the modal after saving
+	});
+
+	// CANCELS EDITING TASK 
+	cancelEditBtn.addEventListener("click", () => {
+		toggleModal(false, elements.editTaskModalWindow); // Close the modal without saving changes
+	});
+
+	// DELETES TASK USING HELPER FUNCTION
+	deleteTaskBtn.addEventListener("click", () => {
+		deleteTask(task.id);
+		toggleModal(false, elements.editTaskModalWindow); // Close the modal after deletion
+		refreshTasksUI();
+	});
  
-
-  // Delete task using a helper function and close the task modal
-
-
-  toggleModal(true, elements.editTaskModal); // Show the edit task modal
+  toggleModal(true, elements.editTaskModalWindow); // Show the edit task modal
 }
 
 function saveTaskChanges(taskId) {
