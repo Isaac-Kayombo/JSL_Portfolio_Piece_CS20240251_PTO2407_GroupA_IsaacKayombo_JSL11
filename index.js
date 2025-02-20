@@ -304,7 +304,7 @@ function addTask(event) {
     if (newTask) {
       addTaskToUI(newTask);
       toggleModal(false);
-      elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
+      elements.filterDiv.style.display = 'none'; // HIDES FILTER OVERLAY
       event.target.reset();
       refreshTasksUI();
     }
@@ -312,7 +312,21 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- 
+  const sidebar = document.getElementById("side-bar-div"); // GETS SIDEBAR ELEMENT
+	const showButton = elements.showSideBarBtn; // GETS SHOW SIDEBAR BUTTON
+	const hideButton = elements.hideSideBarBtn; // GETS HIDE SIDEBAR BUTTON
+
+	if (show) {
+		sidebar.style.display = "block";
+		showButton.style.display = "none"; 
+		hideButton.style.display = "block";
+		localStorage.setItem("showSideBar", "true"); // SAVES SIDEBAR STATE TO LOCALSTORAGE
+	} else {
+		sidebar.style.display = "none";
+		showButton.style.display = "block";
+		hideButton.style.display = "none";
+		localStorage.setItem("showSideBar", "false"); // SAVES SIDEBAR STATE TO LOCALSTORAGE
+	}
 }
 
 function toggleTheme() {
