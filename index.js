@@ -285,17 +285,21 @@ function toggleModal(show, modal = elements.modalWindow) {
   modal.style.display = show ? "block" : "none"; 
 }
 
-/*************************************************************************************************************************************************
- * COMPLETE FUNCTION CODE
- * **********************************************************************************************************************************************/
+/************************************************************************************************************************* */
 
+// HANDLES ADDING TASKS
 function addTask(event) {
   event.preventDefault(); 
 
-  //Assign user input to the task object
+  // USER INPUT FOR THE TASK OBJECT
     const task = {
-      
+      title: document.getElementById("title-input").value, // EXTRACTING TASK TITLE
+      description: document.getElementById("desc-input").value, // TASK DESCRIPTION
+		  status: document.getElementById("select-status").value, // TASK STATUS (e.g., "todo", "doing", "done")
+		  id: Date.now(), // TIMESTAMP AS A UNIQUE TASK ID
+		  board: activeBoard, // ASSIGNING ACTIVE BOARD TASK
     };
+
     const newTask = createNewTask(task);
     if (newTask) {
       addTaskToUI(newTask);
