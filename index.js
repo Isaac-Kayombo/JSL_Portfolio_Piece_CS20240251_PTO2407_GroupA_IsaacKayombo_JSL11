@@ -137,8 +137,9 @@ function filterAndDisplayTasksByBoard(boardName) {
   const filteredTasks = tasks.filter(task => task.board === boardName);
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
+  const columns = document.querySelectorAll(".column-div");
 
-  elements.columnDivs.forEach(column => {
+  columns.forEach(column => {
     const status = column.getAttribute("data-status");
     // Reset column content while preserving the column title
     column.innerHTML = `<div class="column-head-div">
@@ -149,7 +150,9 @@ function filterAndDisplayTasksByBoard(boardName) {
     const tasksContainer = document.createElement("div");
     column.appendChild(tasksContainer);
 
-    filteredTasks.filter(task => task.status = status).forEach(task => { 
+    filteredTasks
+    .filter(task => task.status === status)
+    .forEach(task => { 
       const taskElement = document.createElement("div");
       taskElement.classList.add("task-div");
       taskElement.textContent = task.title;
@@ -204,8 +207,13 @@ function addTaskToUI(task) {
   taskElement.className = "task-div";
   taskElement.textContent = task.title; // Modify as needed
   taskElement.setAttribute("data-task-id", task.id);
+
+  //LISTEN FOR A CLICK EVENT ON EACH TASK AND OPEN A MODAL
+  taskElement.addEventListener("click", () => {
+    openEditTaskModal(task);
+  });
   
-  tasksContainer.appendChild(); 
+  tasksContainer.appendChild(taskElement); 
 }
 
 
