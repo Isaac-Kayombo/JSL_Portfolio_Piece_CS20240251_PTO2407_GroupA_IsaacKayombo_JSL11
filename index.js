@@ -5,7 +5,7 @@ import {getTasks, createNewTask, patchTask, putTask, saveTasks, deleteTask,} fro
 import {initialData} from "./initialData.js";
 
 
-// Function checks if local storage already has data, if not it loads initialData to localStorage
+// CHECKS IF LOCAL STORAGE ALREADY HAS DATA, IF NOT INITIAL DATA LOADS TO LOCAL STORAGE
 function initializeData() {
   if (!localStorage.getItem("tasks")) {
     localStorage.setItem("tasks", JSON.stringify(initialData)); 
@@ -15,7 +15,7 @@ function initializeData() {
   }
 }
 
-// TASK: Get elements from the DOM
+// GETTING ELEMENTS FROM THE DOM
 const elements = {
   // Navigation Sidebar
 	sideBarDiv: document.getElementById("side-bar-div"),
@@ -92,8 +92,7 @@ const elements = {
 
 let activeBoard = ""
 
-// Extracts unique board names from tasks
-// TASK: FIX BUGS
+// EXTRACTS UNIQUE BOARD NAME FROM TASKS
 function fetchAndDisplayBoardsAndTasks() {
   const tasks = getTasks();
   const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
@@ -107,8 +106,7 @@ function fetchAndDisplayBoardsAndTasks() {
   }
 }
 
-// Creates different boards in the DOM
-// TASK: Fix Bugs
+// CREATES DIFFERENT BOARDS IN THE DOM
 function displayBoards(boards) {
   const boardsContainer = document.getElementById("boards-nav-links-div");
   boardsContainer.innerHTML = ''; // Clears the container
@@ -128,8 +126,7 @@ function displayBoards(boards) {
 
 }
 
-// Filters tasks corresponding to the board name and displays them on the DOM.
-// TASK: Fix Bugs
+// FILTERS TASKS CORRESPONDING TO THE BOARD NAME/DISPLAYS TO DOM
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
   const filteredTasks = tasks.filter(task => task.board === boardName);
@@ -171,8 +168,7 @@ function refreshTasksUI() {
   filterAndDisplayTasksByBoard(activeBoard);
 }
 
-// Styles the active board by adding an active class
-// TASK: Fix Bugs
+// STYLES ACTIVE BOARD
 function styleActiveBoard(boardName) {
   document.querySelectorAll(".board-btn").forEach(btn => { 
     
