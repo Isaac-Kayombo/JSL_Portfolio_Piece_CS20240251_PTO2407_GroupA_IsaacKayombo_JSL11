@@ -282,8 +282,7 @@ function setupEventListeners() {
 	});
 }
 
-// Toggles tasks modal
-// Task: Fix bugs
+// TOGGLES TASK MODAL
 function toggleModal(show, modal = elements.modalWindow) {
   modal.style.display = show ? "block" : "none"; 
 }
