@@ -219,40 +219,67 @@ function addTaskToUI(task) {
 
 
 function setupEventListeners() {
-  // Cancel editing task event listener
-  const cancelEditBtn = document.getElementById('cancel-edit-btn');
-  cancelEditBtn.addEventListener("click", () => toggleModal(false, elements.editTaskModal));
-
-  // Cancel adding new task event listener
-  const cancelAddTaskBtn = document.getElementById('cancel-add-task-btn');
-  cancelAddTaskBtn.addEventListener('click', () => {
-    toggleModal(false);
-    elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
+  // CANCEL EDIT TASK MODAL
+  elements.cancelEditBtn.addEventListener("click", () => {
+    toggleModal(false, elements.editTaskModalWindow); // CLOSES THE EDIT TASK MODAL
   });
 
-  // Clicking outside the modal to close it
-  elements.filterDiv.addEventListener('click', () => {
-    toggleModal(false);
-    elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
+  // CANCEL ADD NEW TASK MODAL
+  elements.cancelAddTaskBtn.addEventListener("click", () => {
+    toggleModal(false, elements.newTaskModalWindow); // CLOSES THE ADD TASK MODAL
+    elements.filterDiv.style.display = "none"; // HIDES FILTER OVERLAY
   });
 
-  // Show sidebar event listener
-  elements.hideSideBarBtn.addEventListener("click", () => toggleSidebar(false));
-  elements.showSideBarBtn.addEventListener("click", () => toggleSidebar(true));
+  // HIDES FILTER OVERLAY WHEN CLICKED OUTSIDE MODAL
+	elements.filterDiv.addEventListener("click", () => {
+		toggleModal(false, elements.newTaskModalWindow); // CLOSES ANY OPEN MODAL
+		elements.filterDiv.style.display = "none"; // HIDES FILTER OVERLAY
+	});
 
-  // Theme switch event listener
-  elements.themeSwitch.addEventListener('change', toggleTheme);
+  // SHOW/HIDE SIDEBAR TOGGLE
+  elements.hideSideBarBtn.addEventListener("click", () => toggleSidebar(false)); // HIDE SIDEBAR
+  elements.showSideBarBtn.addEventListener("click", () => toggleSidebar(true)); // SHOW SIDEBAR
 
-  // Show Add New Task Modal event listener
-  elements.createNewTaskBtn.addEventListener('click', () => {
-    toggleModal(true);
-    elements.filterDiv.style.display = 'block'; // Also show the filter overlay
-  });
+  // THEME SWITCH (LIGHT/DARK)
+  elements.switch.addEventListener("change", toggleTheme); // TOGGLES (LIGHT/DARK) MODE
 
-  // Add new task form submission event listener
-  elements.modalWindow.addEventListener('submit',  (event) => {
-    addTask(event)
-  });
+  // SHOW ADD NEW TASK MODAL
+  elements.addNewTaskBtn.addEventListener("click", () => {
+		toggleModal(true, elements.newTaskModalWindow); // OPENS ADD TASK MODAL
+		elements.filterDiv.style.display = "block"; // SHOWS FILTER OVERLAY 
+	});
+
+  // TASK CREATION FORM SUBMISSION
+	elements.newTaskModalWindow.addEventListener("submit", (event) => {
+		event.preventDefault(); // PREVENTS PAGE RELOAD
+		addTask(event); // CALLS ADDTASK
+	});
+
+  // CLICK EVENT TO SWITCH EACH BOARD
+	elements.boardsNavLinksDiv.addEventListener("click", (event) => {
+		const clickedBoard = event.target.textContent; // Get board name from clicked button
+
+		if (
+			(clickedBoard === "Launch Career" || clickedBoard === "Roadmap") &&
+			clickedBoard !== activeBoard
+		) {
+			elements.headerBoardName.textContent = clickedBoard; // Set active board name in header
+			filterAndDisplayTasksByBoard(clickedBoard); // Display tasks for selected board
+			activeBoard = clickedBoard; // Set active board to clicked one
+			localStorage.setItem("activeBoard", JSON.stringify(activeBoard)); // Persist to localStorage
+			styleActiveBoard(activeBoard); // Apply active board styling
+		}
+	});
+
+	// SHOWS EDIT MODAL
+	elements.editBtn.addEventListener("click", () => {
+		toggleModal(true, elements.editBoardDiv); // OPENS EDIT MODAL
+	});
+
+	// DELETES BOARD
+	elements.deleteBoardBtn.addEventListener("click", () => {
+		deleteBoard(activeBoard);
+	});
 }
 
 // Toggles tasks modal
