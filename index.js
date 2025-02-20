@@ -303,7 +303,7 @@ function addTask(event) {
     const newTask = createNewTask(task);
     if (newTask) {
       addTaskToUI(newTask);
-      toggleModal(false);
+      toggleModal(false, elements.newTaskModalWindow);
       elements.filterDiv.style.display = 'none'; // HIDES FILTER OVERLAY
       event.target.reset();
       refreshTasksUI();
@@ -396,21 +396,6 @@ function openEditTaskModal(task) {
 	});
  
   toggleModal(true, elements.editTaskModalWindow); // Show the edit task modal
-}
-
-function saveTaskChanges(taskId) {
-  // Get new user inputs
-  
-
-  // Create an object with the updated task details
-
-
-  // Update task using a hlper functoin
- 
-
-  // Close the modal and refresh the UI to reflect the changes
-
-  refreshTasksUI();
 }
 
 /*************************************************************************************************************************************************/
