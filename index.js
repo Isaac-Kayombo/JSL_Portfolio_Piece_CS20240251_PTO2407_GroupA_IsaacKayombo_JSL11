@@ -19,7 +19,77 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
+  // Navigation Sidebar
+	sideBarDiv: document.getElementById("side-bar-div"),
+	sideLogoDiv: document.getElementById("side-logo-div"),
+	logo: document.getElementById("logo"),
+	boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
+	headlineSidePanel: document.getElementById("headline-sidepanel"),
+	sideBarBottom: document.querySelector(".side-bar-bottom"),
+	toggleDiv: document.querySelector(".toggle-div"),
+	iconDark: document.getElementById("icon-dark"),
+	switch: document.getElementById("switch"),
+	labelCheckboxTheme: document.getElementById("label-checkbox-theme"),
+	iconLight: document.getElementById("icon-light"),
+	hideSideBarDiv: document.querySelector(".hide-side-bar-div"),
+	hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
+	showSideBarBtn: document.getElementById("show-side-bar-btn"),
 
+	// Main Layout
+	layout: document.getElementById("layout"),
+	header: document.getElementById("header"),
+	headerNameDiv: document.querySelector(".header-name-div"),
+	logoMobile: document.querySelector(".logo-mobile"),
+	headerBoardName: document.getElementById("header-board-name"),
+	dropdownBtn: document.getElementById("dropdownBtn"),
+	dropDownIcon: document.getElementById("dropDownIcon"),
+	addNewTaskBtn: document.getElementById("add-new-task-btn"),
+	editBtn: document.getElementById("edit-board-btn"),
+	editBoardDiv: document.getElementById("editBoardDiv"),
+	deleteBoardBtn: document.getElementById("deleteBoardBtn"),
+	container: document.querySelector(".container"),
+	cardColumnMain: document.querySelector(".card-column-main"),
+	todoColumnDiv: document.querySelector('.column-div[data-status="todo"]'),
+	todoHeadDiv: document.getElementById("todo-head-div"),
+	todoDot: document.getElementById("todo-dot"),
+	todoText: document.getElementById("toDoText"),
+	todoTasksContainer: document.querySelector(".tasks-container"),
+	doingColumnDiv: document.querySelector('.column-div[data-status="doing"]'),
+	doingHeadDiv: document.getElementById("doing-head-div"),
+	doingDot: document.getElementById("doing-dot"),
+	doingText: document.getElementById("doingText"),
+	doingTasksContainer: document.querySelector(".tasks-container"),
+	doneColumnDiv: document.querySelector('.column-div[data-status="done"]'),
+	doneHeadDiv: document.getElementById("done-head-div"),
+	doneDot: document.getElementById("done-dot"),
+	doneText: document.getElementById("doneText"),
+	doneTasksContainer: document.querySelector(".tasks-container"),
+
+	// New Task Modal
+	newTaskModalWindow: document.getElementById("new-task-modal-window"),
+	modalTitleInput: document.getElementById("modal-title-input"),
+	titleInput: document.getElementById("title-input"),
+	modalDescInput: document.getElementById("modal-desc-input"),
+	descInput: document.getElementById("desc-input"),
+	modalSelectStatus: document.getElementById("modal-select-status"),
+	selectStatus: document.getElementById("select-status"),
+	createTaskBtn: document.getElementById("create-task-btn"),
+	cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
+
+	// Edit Task Modal
+	editTaskModalWindow: document.querySelector(".edit-task-modal-window"),
+	editTaskForm: document.getElementById("edit-task-form"),
+	editTaskHeader: document.getElementById("edit-task-header"),
+	editTaskTitleInput: document.getElementById("edit-task-title-input"),
+	editBtn: document.getElementById("edit-btn"),
+	editTaskDescInput: document.getElementById("edit-task-desc-input"),
+	editSelectStatus: document.getElementById("edit-select-status"),
+	saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
+	cancelEditBtn: document.getElementById("cancel-edit-btn"),
+	deleteTaskBtn: document.getElementById("delete-task-btn"),
+
+	// Filter Section
+	filterDiv: document.getElementById("filterDiv"),
 }
 
 let activeBoard = ""
