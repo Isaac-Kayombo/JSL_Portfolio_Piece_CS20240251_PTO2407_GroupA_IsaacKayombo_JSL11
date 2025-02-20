@@ -330,7 +330,23 @@ function toggleSidebar(show) {
 }
 
 function toggleTheme() {
- 
+  const body = document.body; // ACCESSES BODY ELEMENT
+  const isDarkTheme = body.classList.contains("dark-theme"); // CHECKS IF DARK THEME CLASS ALREADY APPLIED
+
+  if (isDarkTheme) {
+    // IF DARK THEME IS APPLIED, SWITCH TO LIGHT
+    body.classList.remove("dark-theme");
+		body.classList.add("light-theme");
+  } else {
+    // IF LIGHT THEME IS APPLIED, SWITCH TO DARK
+    body.classList.remove("light-theme");
+		body.classList.add("dark-theme");
+  }
+  // SAVES USERS THEME PREFERENCE IN LOCALSTORAGE
+  localStorage.setItem(
+    "theme",
+    body.classList.contains("dark-theme") ? "dark" : "light"
+  );
 }
 
 
