@@ -392,7 +392,13 @@ function init() {
   setupEventListeners();
   const showSidebar = localStorage.getItem('showSideBar') === 'true';
   toggleSidebar(showSidebar);
-  const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
-  document.body.classList.toggle('light-theme', isLightTheme);
+  const savedTheme = localStorage.getItem("theme");
+  document.body.classList.remove(
+    savedTheme === "dark" ? "light-theme" : "dark-theme" 
+  );
+  document.body.classList.add(
+    savedTheme === "dark" ? "dark-theme" : "light-theme"
+  );
+  elements.switch.checked = savedTheme !== "dark";
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
