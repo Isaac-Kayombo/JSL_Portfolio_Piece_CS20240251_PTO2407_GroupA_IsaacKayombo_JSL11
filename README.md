@@ -106,3 +106,8 @@ As you embark on implementing these features, remember the value of tackling the
 - **Saving New Tasks in localStorage**: As a user, I want my newly created tasks to be saved in localStorage so that my tasks persist even when I close or refresh the browser.
 - **Reflecting Task Updates in localStorage**: As a user, I expect tasks that I update to have their changes reflected in localStorage so that any modifications are not lost.
 - **Removing Deleted Tasks from localStorage**: As a user, I want tasks that I delete to be removed from localStorage so that my task list remains accurate and up-to-date.
+
+
+ZOOM VIDEO PRESENTATION LINK:
+
+https://drive.google.com/file/d/1B1Jql3UuVqS1mnozXGxH7pKFpUYyjSkm/view?usp=drivesdk
